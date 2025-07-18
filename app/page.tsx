@@ -10,6 +10,7 @@ import { FaGithub } from "react-icons/fa6";
 
 import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
+import { HiEnvelope } from "react-icons/hi2";
 
 const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
@@ -82,10 +83,15 @@ export default function Page() {
           >
             alex zhao
           </h1>
-          <div className="mt-8 flex flex-row items-center justify-center">
+          <div className="mt-8 flex flex-row items-center justify-center gap-x-4">
             <Button size="icon" asChild>
               <Link href="https://github.com/zeyuanzhao" target="_blank">
                 <FaGithub />
+              </Link>
+            </Button>
+            <Button size="icon" asChild>
+              <Link href="mailto:contact@azhao.dev" target="_blank">
+                <HiEnvelope />
               </Link>
             </Button>
           </div>
