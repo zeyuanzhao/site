@@ -2,7 +2,7 @@
 
 import { Roboto_Mono } from "next/font/google"; // eslint-disable-line camelcase
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useLayoutEffect } from "react";
 import { FaGithub } from "react-icons/fa6";
 
 import { Button } from "@/components/ui/button";
@@ -82,7 +82,10 @@ export default function Page() {
   useSmoothScrollSnap(scrollRef);
 
   return (
-    <div ref={scrollRef} className="h-screen overflow-y-auto">
+    <div
+      ref={scrollRef}
+      className="dark dark:bg-background dark:text-foreground h-screen overflow-y-auto"
+    >
       <div className="snap-section flex h-screen w-full flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-center">
           <div className="mb-6 flex flex-row items-center justify-center gap-6">
@@ -92,7 +95,7 @@ export default function Page() {
             <p>contact</p>
           </div>
           <h1
-            className={`before:animate-typewriter after:animate-caret relative w-[max-content] ${robotoMono.className} text-9xl before:absolute before:inset-0 before:bg-white after:absolute after:inset-0 after:w-[0.075em] after:bg-black`}
+            className={`before:animate-typewriter after:animate-caret relative w-[max-content] ${robotoMono.className} before:bg-background after:bg-foreground text-9xl before:absolute before:inset-0 after:absolute after:inset-0 after:w-[0.075em]`}
           >
             alex zhao
           </h1>
@@ -111,7 +114,25 @@ export default function Page() {
         >
           about
         </div>
-        <div className="flex-1" />
+        <div className="flex flex-1 flex-col items-center justify-center py-24 pr-48">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+      </div>
+      <div className="snap-section flex h-screen w-full flex-row">
+        <div
+          className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className}`}
+        >
+          projects
+        </div>
+        <div className="h- flex h-[200lvh] flex-1 flex-col items-center justify-center border py-24 pr-48"></div>
       </div>
     </div>
   );
