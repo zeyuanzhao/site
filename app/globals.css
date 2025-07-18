@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@plugin './hero.ts';
+/* Note: You may need to change the path to fit your project structure */
+@source '../node_modules/@heroui/theme/dist*.{js,ts,jsx,tsx}';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
 }
@@ -8,8 +14,6 @@ html {
 body {
   overflow-x: hidden;
 }
-
-@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --animate-typewriter: typewriter 2s steps(9) forwards;
