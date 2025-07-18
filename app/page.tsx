@@ -141,20 +141,28 @@ export default function Page() {
           projects
         </div>
         <div className="flex flex-1 flex-col items-start justify-start py-24">
-          <div className="flex w-full flex-1 flex-col items-start justify-start space-y-8">
+          <div className="grid w-full grid-cols-2 gap-8">
             <ProjectCard
               title="Project 1"
-              description="Description for project 1"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua."
               className="w-full"
             />
             <ProjectCard
               title="Project 2"
-              description="Description for project 2"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua."
               className="w-full"
             />
             <ProjectCard
               title="Project 3"
-              description="Description for project 3"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum."
               className="w-full"
             />
             <ProjectCard
