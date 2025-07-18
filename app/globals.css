@@ -150,10 +150,6 @@
   }
 }
 
-.smooth-scroll {
-  scroll-behavior: smooth;
-}
-
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -164,6 +160,6 @@
 }
 
 .scrollable-content {
-  scroll-behavior: smooth;
-  transition: scroll-top 0.2s ease-out;
+  contain: layout style paint;
+  backface-visibility: hidden;
 }

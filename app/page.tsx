@@ -15,7 +15,7 @@ export default function Page() {
   function useSmoothScrollSnap(
     containerRef: React.RefObject<HTMLDivElement | null>,
     sectionClass = "snap-section",
-    duration = 600,
+    duration = 800,
   ) {
     useEffect(() => {
       const container = containerRef.current;
@@ -26,6 +26,12 @@ export default function Page() {
       let isAnimating = false;
       let lastScrollTime = 0;
       let scrollTimeout: NodeJS.Timeout | null = null;
+
+      const SCROLL_SPEED = 400;
+      const SCROLL_DURATION = 1000;
+
+      let isContentAnimating = false;
+      let contentAnimationId: number | null = null;
 
       const getSections = () =>
         Array.from(container.querySelectorAll<HTMLElement>(`.${sectionClass}`));
@@ -42,7 +48,7 @@ export default function Page() {
           if (!container) return;
           const elapsed = now - startTime;
           const t = Math.min(elapsed / duration, 1);
-          const eased = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+          const eased = 1 - Math.pow(1 - t, 3);
           container.scrollTop = start + change * eased;
           if (t < 1) {
             requestAnimationFrame(animateScroll);
@@ -51,6 +57,50 @@ export default function Page() {
           }
         }
         requestAnimationFrame(animateScroll);
+      }
+
+      function smoothScrollContent(
+        element: HTMLElement,
+        direction: "up" | "down",
+      ) {
+        if (contentAnimationId) {
+          cancelAnimationFrame(contentAnimationId);
+        }
+
+        isContentAnimating = true;
+        const start = element.scrollTop;
+        const scrollDistance = SCROLL_SPEED * (direction === "down" ? 1 : -1);
+        const end = Math.max(
+          0,
+          Math.min(
+            element.scrollHeight - element.clientHeight,
+            start + scrollDistance,
+          ),
+        );
+        const change = end - start;
+
+        if (Math.abs(change) < 1) {
+          isContentAnimating = false;
+          return;
+        }
+
+        const startTime = performance.now();
+
+        function animateContentScroll(now: number) {
+          const elapsed = now - startTime;
+          const t = Math.min(elapsed / SCROLL_DURATION, 1);
+          const eased = 1 - Math.pow(1 - t, 3);
+          element.scrollTop = start + change * eased;
+
+          if (t < 1) {
+            contentAnimationId = requestAnimationFrame(animateContentScroll);
+          } else {
+            isContentAnimating = false;
+            contentAnimationId = null;
+          }
+        }
+
+        contentAnimationId = requestAnimationFrame(animateContentScroll);
       }
 
       function getCurrentSection() {
@@ -74,7 +124,9 @@ export default function Page() {
         if (current === -1) return false;
 
         const section = sections[current];
-        const scrollableContent = section.querySelector(".scrollable-content");
+        const scrollableContent = section.querySelector(
+          ".scrollable-content",
+        ) as HTMLElement;
 
         if (!scrollableContent) {
           const scrollTop = container.scrollTop;
@@ -93,10 +145,10 @@ export default function Page() {
         if (direction === "down") {
           return (
             scrollableContent.scrollTop + scrollableContent.clientHeight >=
-            scrollableContent.scrollHeight - 10
+            scrollableContent.scrollHeight - 5
           );
         } else {
-          return scrollableContent.scrollTop <= 10;
+          return scrollableContent.scrollTop <= 5;
         }
       }
 
@@ -140,15 +192,13 @@ export default function Page() {
 
           if (!atEnd) {
             e.preventDefault();
-            const scrollAmount = e.deltaY * 0.5;
-            scrollableContent.scrollTop += scrollAmount;
+            smoothScrollContent(scrollableContent, direction);
             return;
-          } else {
-            const didTransition = handleSectionTransition(direction);
-            if (didTransition) {
-              e.preventDefault();
-              return;
-            }
+          }
+          const didTransition = handleSectionTransition(direction);
+          if (didTransition) {
+            e.preventDefault();
+            return;
           }
         } else {
           const didTransition = handleSectionTransition(direction);
@@ -157,22 +207,6 @@ export default function Page() {
             return;
           }
         }
-
-        if (scrollTimeout) {
-          clearTimeout(scrollTimeout);
-        }
-
-        lastScrollTime = Date.now();
-
-        scrollTimeout = setTimeout(() => {
-          if (!isAnimating && Date.now() - lastScrollTime > 150) {
-            const sections = getSections();
-            const current = getCurrentSection();
-            if (current !== -1) {
-              scrollToSection(sections[current]);
-            }
-          }
-        }, 300);
       }
 
       container.addEventListener("wheel", onWheel, { passive: false });
@@ -182,10 +216,12 @@ export default function Page() {
         if (scrollTimeout) {
           clearTimeout(scrollTimeout);
         }
+        if (contentAnimationId) {
+          cancelAnimationFrame(contentAnimationId);
+        }
       };
     }, [containerRef, sectionClass, duration]);
   }
-
   useSmoothScrollSnap(pageContainerRef);
 
   return (
@@ -297,6 +333,54 @@ export default function Page() {
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. At
                 vero eos et accusamus et iusto odio dignissimos ducimus qui
                 blanditiis praesentium voluptatum.
+              </p>
+            </div>
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
+                ut perspiciatis unde omnis iste natus error sit voluptatem.
+              </p>
+            </div>
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
+                ut perspiciatis unde omnis iste natus error sit voluptatem.
+              </p>
+            </div>
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
+                ut perspiciatis unde omnis iste natus error sit voluptatem.
+              </p>
+            </div>
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
+                ut perspiciatis unde omnis iste natus error sit voluptatem.
+              </p>
+            </div>
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
+                ut perspiciatis unde omnis iste natus error sit voluptatem.
+              </p>
+            </div>
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
+                ut perspiciatis unde omnis iste natus error sit voluptatem.
               </p>
             </div>
             <div className="rounded-lg border p-6">
