@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import { FaGithub } from "react-icons/fa6";
 
 import { Button } from "@/components/ui/button";
+import { ProjectCard } from "@/components/ProjectCard";
 
 const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
@@ -28,7 +29,7 @@ export default function Page() {
 
       const SCROLL_SENSITIVITY = 0.6;
       const SCROLL_SMOOTHING = 0.12;
-      const MAX_SCROLL_SPEED = 25;
+      const MAX_SCROLL_SPEED = 20;
       const DECAY = 0.75;
 
       let scrollVelocity = 0;
@@ -258,7 +259,7 @@ export default function Page() {
       ref={pageContainerRef}
       className="dark dark:bg-background dark:text-foreground hide-scrollbar h-screen overflow-y-auto"
     >
-      <div className="snap-section flex h-screen w-full flex-col items-center justify-center">
+      <div className="snap-section mx-auto flex h-screen w-full max-w-[1800px] flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-center">
           <div className="mb-6 flex flex-row items-center justify-center gap-6">
             <p>about</p>
@@ -280,13 +281,13 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="snap-section flex h-screen w-full flex-row">
+      <div className="snap-section mx-auto flex h-screen w-full max-w-[1800px] flex-row">
         <div
           className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className}`}
         >
           about
         </div>
-        <div className="scrollable-content hide-scrollbar flex max-h-screen flex-1 flex-col items-center justify-center overflow-y-auto py-24 pr-48">
+        <div className="scrollable-content hide-scrollbar mr-48 flex max-h-screen flex-1 flex-col items-center justify-center overflow-y-auto py-24">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -311,115 +312,29 @@ export default function Page() {
           </p>
         </div>
       </div>
-      <div className="snap-section flex min-h-screen w-full flex-row">
+      <div className="snap-section mx-auto flex min-h-screen w-full max-w-[1800px] flex-row">
         <div
           className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className}`}
         >
           projects
         </div>
-        <div className="scrollable-content hide-scrollbar flex max-h-screen flex-1 flex-col items-start justify-start overflow-y-auto py-24 pr-48">
-          <div className="space-y-8">
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 1</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 2</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu fugiat nulla pariatur.
-              </p>
-            </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 3</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 4</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Nemo
-                enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                fugit.
-              </p>
-            </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 5</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. At
-                vero eos et accusamus et iusto odio dignissimos ducimus qui
-                blanditiis praesentium voluptatum.
-              </p>
-            </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
-                ut perspiciatis unde omnis iste natus error sit voluptatem.
-              </p>
-            </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
-                ut perspiciatis unde omnis iste natus error sit voluptatem.
-              </p>
-            </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
-                ut perspiciatis unde omnis iste natus error sit voluptatem.
-              </p>
-            </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
-                ut perspiciatis unde omnis iste natus error sit voluptatem.
-              </p>
-            </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
-                ut perspiciatis unde omnis iste natus error sit voluptatem.
-              </p>
-            </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
-                ut perspiciatis unde omnis iste natus error sit voluptatem.
-              </p>
-            </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
-                ut perspiciatis unde omnis iste natus error sit voluptatem.
-              </p>
-            </div>
+        <div className="scrollable-content hide-scrollbar mr-18 flex max-h-screen flex-1 flex-col items-start justify-start overflow-y-auto py-24">
+          <div className="flex w-full flex-1 flex-col items-start justify-start space-y-8">
+            <ProjectCard
+              title="Project 1"
+              description="Description for project 1"
+              className="w-full"
+            />
+            <ProjectCard
+              title="Project 2"
+              description="Description for project 2"
+              className="w-full"
+            />
+            <ProjectCard
+              title="Project 3"
+              description="Description for project 3"
+              className="w-full"
+            />
           </div>
         </div>
       </div>
