@@ -1,6 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -150,16 +158,16 @@
   }
 }
 
-.hide-scrollbar {
+/* Hide scrollbar utility for custom scroll containers */
+html,
+body,
+hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
-}
-
-.scrollable-content {
-  contain: layout style paint;
-  backface-visibility: hidden;
 }
