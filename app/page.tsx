@@ -2,7 +2,7 @@
 
 import { Roboto_Mono } from "next/font/google"; // eslint-disable-line camelcase
 import Link from "next/link";
-import { useEffect, useRef, useLayoutEffect } from "react";
+import { useEffect, useRef } from "react";
 import { FaGithub } from "react-icons/fa6";
 
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,7 @@ export default function Page() {
       }
 
       let isAnimating = false;
-      let scrollTimeout: NodeJS.Timeout | null = null;
+      const scrollTimeout: NodeJS.Timeout | null = null;
 
       const SCROLL_SENSITIVITY = 0.6;
       const SCROLL_SMOOTHING = 0.12;
@@ -53,7 +53,7 @@ export default function Page() {
           if (!container) return;
           const elapsed = now - startTime;
           const t = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - t, 3);
+          const eased = 1 - (1 - t) ** 3;
           container.scrollTop = start + change * eased;
           if (t < 1) {
             requestAnimationFrame(animateScroll);
@@ -125,7 +125,7 @@ export default function Page() {
       function getCurrentSection() {
         if (!container) return -1;
         const sections = getSections();
-        const scrollTop = container.scrollTop;
+        const { scrollTop } = container;
         const viewportHeight = container.clientHeight;
         const scrollCenter = scrollTop + viewportHeight / 2;
 
@@ -148,7 +148,7 @@ export default function Page() {
         ) as HTMLElement;
 
         if (!scrollableContent) {
-          const scrollTop = container.scrollTop;
+          const { scrollTop } = container;
           const viewportHeight = container.clientHeight;
           const sectionTop = section.offsetTop;
           const sectionHeight = section.offsetHeight;
@@ -156,9 +156,8 @@ export default function Page() {
 
           if (direction === "down") {
             return scrollTop + viewportHeight >= sectionBottom - 50;
-          } else {
-            return scrollTop <= sectionTop + 50;
           }
+          return scrollTop <= sectionTop + 50;
         }
 
         if (direction === "down") {
@@ -166,9 +165,8 @@ export default function Page() {
             scrollableContent.scrollTop + scrollableContent.clientHeight >=
             scrollableContent.scrollHeight - 5
           );
-        } else {
-          return scrollableContent.scrollTop <= 5;
         }
+        return scrollableContent.scrollTop <= 5;
       }
 
       function handleSectionTransition(direction: "up" | "down") {
@@ -229,7 +227,6 @@ export default function Page() {
           const didTransition = handleSectionTransition(direction);
           if (didTransition) {
             e.preventDefault();
-            return;
           }
         } else {
           activeScrollableContent = null;
@@ -237,7 +234,6 @@ export default function Page() {
           const didTransition = handleSectionTransition(direction);
           if (didTransition) {
             e.preventDefault();
-            return;
           }
         }
       }
