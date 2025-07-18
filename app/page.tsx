@@ -1,14 +1,15 @@
 "use client";
 
+import "lenis/dist/lenis.css";
+
+import Lenis from "lenis";
 import { Roboto_Mono } from "next/font/google"; // eslint-disable-line camelcase
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { FaGithub } from "react-icons/fa6";
 
-import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/ProjectCard";
-import Lenis from "lenis";
-import "lenis/dist/lenis.css";
+import { Button } from "@/components/ui/button";
 
 const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
@@ -26,7 +27,7 @@ export default function Page() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: (t) => Math.min(1, 1.001 - 2 ** (-10 * t)),
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,
@@ -47,30 +48,34 @@ export default function Page() {
       <div className="flex min-h-screen w-full max-w-[2000px] flex-col items-center justify-center px-20">
         <div className="flex flex-col items-center justify-center">
           <div className="mb-6 flex flex-row items-center justify-center gap-6">
-            <p
+            <button
+              type="button"
               onClick={() => handleScrollTo(aboutRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
             >
               about
-            </p>
-            <p
+            </button>
+            <button
+              type="button"
               onClick={() => handleScrollTo(projectsRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
             >
               projects
-            </p>
-            <p
+            </button>
+            <button
+              type="button"
               onClick={() => handleScrollTo(violinRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
             >
               violin
-            </p>
-            <p
+            </button>
+            <button
+              type="button"
               onClick={() => handleScrollTo(contactRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
             >
               contact
-            </p>
+            </button>
           </div>
           <h1
             className={`before:animate-typewriter after:animate-caret relative w-[max-content] ${robotoMono.className} before:bg-background after:bg-foreground text-9xl before:absolute before:inset-0 after:absolute after:inset-0 after:w-[0.075em]`}
