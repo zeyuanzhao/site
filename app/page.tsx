@@ -28,8 +28,8 @@ export default function Page() {
 
       const SCROLL_SENSITIVITY = 0.6;
       const SCROLL_SMOOTHING = 0.12;
-      const MAX_SCROLL_SPEED = 45;
-      const DECAY = 0.0002;
+      const MAX_SCROLL_SPEED = 25;
+      const DECAY = 0.75;
 
       let scrollVelocity = 0;
       let targetVelocity = 0;
