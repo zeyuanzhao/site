@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
 export default function Page() {
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const pageContainerRef = useRef<HTMLDivElement | null>(null);
 
   function useSmoothScrollSnap(
     containerRef: React.RefObject<HTMLDivElement | null>,
@@ -24,6 +24,8 @@ export default function Page() {
       }
 
       let isAnimating = false;
+      let lastScrollTime = 0;
+      let scrollTimeout: NodeJS.Timeout | null = null;
 
       const getSections = () =>
         Array.from(container.querySelectorAll<HTMLElement>(`.${sectionClass}`));
@@ -51,40 +53,145 @@ export default function Page() {
         requestAnimationFrame(animateScroll);
       }
 
-      function onWheel(e: WheelEvent) {
-        if (isAnimating || !container) {
-          e.preventDefault();
-          return;
-        }
+      function getCurrentSection() {
+        if (!container) return -1;
         const sections = getSections();
-        const current = sections.findIndex(
+        const scrollTop = container.scrollTop;
+        const viewportHeight = container.clientHeight;
+        const scrollCenter = scrollTop + viewportHeight / 2;
+
+        return sections.findIndex(
           (sec) =>
-            sec.offsetTop <= container.scrollTop + 10 &&
-            sec.offsetTop + sec.offsetHeight > container.scrollTop + 10,
+            sec.offsetTop <= scrollCenter &&
+            sec.offsetTop + sec.offsetHeight > scrollCenter,
         );
-        if (current === -1) return;
-        let next = current;
-        if (e.deltaY > 0 && current < sections.length - 1) next = current + 1;
-        else if (e.deltaY < 0 && current > 0) next = current - 1;
-        if (next !== current) {
-          e.preventDefault();
-          scrollToSection(sections[next]);
+      }
+
+      function isAtSectionEnd(direction: "up" | "down") {
+        if (!container) return false;
+        const sections = getSections();
+        const current = getCurrentSection();
+        if (current === -1) return false;
+
+        const section = sections[current];
+        const scrollableContent = section.querySelector(".scrollable-content");
+
+        if (!scrollableContent) {
+          const scrollTop = container.scrollTop;
+          const viewportHeight = container.clientHeight;
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const sectionBottom = sectionTop + sectionHeight;
+
+          if (direction === "down") {
+            return scrollTop + viewportHeight >= sectionBottom - 50;
+          } else {
+            return scrollTop <= sectionTop + 50;
+          }
+        }
+
+        if (direction === "down") {
+          return (
+            scrollableContent.scrollTop + scrollableContent.clientHeight >=
+            scrollableContent.scrollHeight - 10
+          );
+        } else {
+          return scrollableContent.scrollTop <= 10;
         }
       }
 
+      function handleSectionTransition(direction: "up" | "down") {
+        const sections = getSections();
+        const current = getCurrentSection();
+        if (current === -1) return false;
+
+        let next = current;
+        if (direction === "down" && current < sections.length - 1) {
+          next = current + 1;
+        } else if (direction === "up" && current > 0) {
+          next = current - 1;
+        }
+
+        if (next !== current) {
+          scrollToSection(sections[next]);
+          return true;
+        }
+        return false;
+      }
+
+      function onWheel(e: WheelEvent) {
+        if (isAnimating) {
+          e.preventDefault();
+          return;
+        }
+
+        const sections = getSections();
+        const current = getCurrentSection();
+        if (current === -1) return;
+
+        const currentSection = sections[current];
+        const scrollableContent = currentSection.querySelector(
+          ".scrollable-content",
+        ) as HTMLElement;
+        const direction = e.deltaY > 0 ? "down" : "up";
+
+        if (scrollableContent) {
+          const atEnd = isAtSectionEnd(direction);
+
+          if (!atEnd) {
+            e.preventDefault();
+            const scrollAmount = e.deltaY * 0.5;
+            scrollableContent.scrollTop += scrollAmount;
+            return;
+          } else {
+            const didTransition = handleSectionTransition(direction);
+            if (didTransition) {
+              e.preventDefault();
+              return;
+            }
+          }
+        } else {
+          const didTransition = handleSectionTransition(direction);
+          if (didTransition) {
+            e.preventDefault();
+            return;
+          }
+        }
+
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+
+        lastScrollTime = Date.now();
+
+        scrollTimeout = setTimeout(() => {
+          if (!isAnimating && Date.now() - lastScrollTime > 150) {
+            const sections = getSections();
+            const current = getCurrentSection();
+            if (current !== -1) {
+              scrollToSection(sections[current]);
+            }
+          }
+        }, 300);
+      }
+
       container.addEventListener("wheel", onWheel, { passive: false });
+
       return () => {
         container.removeEventListener("wheel", onWheel);
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
       };
     }, [containerRef, sectionClass, duration]);
   }
 
-  useSmoothScrollSnap(scrollRef);
+  useSmoothScrollSnap(pageContainerRef);
 
   return (
     <div
-      ref={scrollRef}
-      className="dark dark:bg-background dark:text-foreground h-screen overflow-y-auto"
+      ref={pageContainerRef}
+      className="dark dark:bg-background dark:text-foreground hide-scrollbar h-screen overflow-y-auto"
     >
       <div className="snap-section flex h-screen w-full flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-center">
@@ -114,7 +221,7 @@ export default function Page() {
         >
           about
         </div>
-        <div className="flex flex-1 flex-col items-center justify-center py-24 pr-48">
+        <div className="scrollable-content hide-scrollbar flex max-h-screen flex-1 flex-col items-center justify-center overflow-y-auto py-24 pr-48">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -124,15 +231,84 @@ export default function Page() {
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
           </p>
+          <br />
+          <p>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+            quae ab illo inventore veritatis et quasi architecto beatae vitae
+            dicta sunt explicabo.
+          </p>
+          <br />
+          <p>
+            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+            fugit, sed quia consequuntur magni dolores eos qui ratione
+            voluptatem sequi nesciunt.
+          </p>
         </div>
       </div>
-      <div className="snap-section flex h-screen w-full flex-row">
+      <div className="snap-section flex min-h-screen w-full flex-row">
         <div
           className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className}`}
         >
           projects
         </div>
-        <div className="h- flex h-[200lvh] flex-1 flex-col items-center justify-center border py-24 pr-48"></div>
+        <div className="scrollable-content hide-scrollbar flex max-h-screen flex-1 flex-col items-start justify-start overflow-y-auto py-24 pr-48">
+          <div className="space-y-8">
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 1</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 2</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis
+                aute irure dolor in reprehenderit in voluptate velit esse cillum
+                dolore eu fugiat nulla pariatur.
+              </p>
+            </div>
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 3</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 4</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Nemo
+                enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+                fugit.
+              </p>
+            </div>
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 5</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. At
+                vero eos et accusamus et iusto odio dignissimos ducimus qui
+                blanditiis praesentium voluptatum.
+              </p>
+            </div>
+            <div className="rounded-lg border p-6">
+              <h3 className="mb-4 text-2xl font-bold">Project 6</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
+                ut perspiciatis unde omnis iste natus error sit voluptatem.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

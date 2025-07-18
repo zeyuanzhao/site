@@ -149,3 +149,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-content {
+  scroll-behavior: smooth;
+  transition: scroll-top 0.2s ease-out;
+}
