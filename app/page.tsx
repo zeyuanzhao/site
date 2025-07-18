@@ -13,6 +13,16 @@ import "lenis/dist/lenis.css";
 const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
 export default function Page() {
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const violinRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+
+  const handleScrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -37,10 +47,30 @@ export default function Page() {
       <div className="flex min-h-screen w-full max-w-[2000px] flex-col items-center justify-center px-20">
         <div className="flex flex-col items-center justify-center">
           <div className="mb-6 flex flex-row items-center justify-center gap-6">
-            <p>about</p>
-            <p>projects</p>
-            <p>violin</p>
-            <p>contact</p>
+            <p
+              onClick={() => handleScrollTo(aboutRef)}
+              className="hover:cursor-pointer hover:underline focus:outline-none"
+            >
+              about
+            </p>
+            <p
+              onClick={() => handleScrollTo(projectsRef)}
+              className="hover:cursor-pointer hover:underline focus:outline-none"
+            >
+              projects
+            </p>
+            <p
+              onClick={() => handleScrollTo(violinRef)}
+              className="hover:cursor-pointer hover:underline focus:outline-none"
+            >
+              violin
+            </p>
+            <p
+              onClick={() => handleScrollTo(contactRef)}
+              className="hover:cursor-pointer hover:underline focus:outline-none"
+            >
+              contact
+            </p>
           </div>
           <h1
             className={`before:animate-typewriter after:animate-caret relative w-[max-content] ${robotoMono.className} before:bg-background after:bg-foreground text-9xl before:absolute before:inset-0 after:absolute after:inset-0 after:w-[0.075em]`}
@@ -56,7 +86,10 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20">
+      <div
+        ref={aboutRef}
+        className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
+      >
         <div
           className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0 h-screen`}
         >
@@ -87,7 +120,10 @@ export default function Page() {
           </p>
         </div>
       </div>
-      <div className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20">
+      <div
+        ref={projectsRef}
+        className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
+      >
         <div
           className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0 h-screen`}
         >
@@ -136,6 +172,44 @@ export default function Page() {
               className="w-full"
             />
           </div>
+        </div>
+      </div>
+      <div
+        ref={violinRef}
+        className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
+      >
+        <div
+          className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0 h-screen`}
+        >
+          violin
+        </div>
+        <div className="flex flex-1 flex-col items-center justify-center py-24">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      </div>
+      {/* Contact section placeholder */}
+      <div
+        ref={contactRef}
+        className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
+      >
+        <div
+          className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0`}
+        >
+          contact
+        </div>
+        <div className="flex flex-1 flex-col items-center justify-center py-24">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
         </div>
       </div>
     </div>
