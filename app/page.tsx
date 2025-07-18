@@ -24,14 +24,19 @@ export default function Page() {
       }
 
       let isAnimating = false;
-      let lastScrollTime = 0;
       let scrollTimeout: NodeJS.Timeout | null = null;
 
-      const SCROLL_SPEED = 400;
-      const SCROLL_DURATION = 1000;
+      const SCROLL_SENSITIVITY = 0.6;
+      const SCROLL_SMOOTHING = 0.12;
+      const MAX_SCROLL_SPEED = 45;
+      const DECAY = 0.0002;
 
-      let isContentAnimating = false;
-      let contentAnimationId: number | null = null;
+      let scrollVelocity = 0;
+      let targetVelocity = 0;
+      let lastScrollTime = 0;
+      let scrollAnimationId: number | null = null;
+
+      let activeScrollableContent: HTMLElement | null = null;
 
       const getSections = () =>
         Array.from(container.querySelectorAll<HTMLElement>(`.${sectionClass}`));
@@ -59,48 +64,62 @@ export default function Page() {
         requestAnimationFrame(animateScroll);
       }
 
-      function smoothScrollContent(
-        element: HTMLElement,
-        direction: "up" | "down",
-      ) {
-        if (contentAnimationId) {
-          cancelAnimationFrame(contentAnimationId);
-        }
+      function startSmoothScrolling() {
+        if (scrollAnimationId) return;
 
-        isContentAnimating = true;
-        const start = element.scrollTop;
-        const scrollDistance = SCROLL_SPEED * (direction === "down" ? 1 : -1);
-        const end = Math.max(
-          0,
-          Math.min(
-            element.scrollHeight - element.clientHeight,
-            start + scrollDistance,
-          ),
-        );
-        const change = end - start;
+        function smoothScrollLoop() {
+          if (!activeScrollableContent) {
+            scrollAnimationId = null;
+            return;
+          }
 
-        if (Math.abs(change) < 1) {
-          isContentAnimating = false;
-          return;
-        }
+          const velocityDiff = targetVelocity - scrollVelocity;
+          scrollVelocity += velocityDiff * SCROLL_SMOOTHING;
 
-        const startTime = performance.now();
+          const now = performance.now();
+          if (now - lastScrollTime > 25) {
+            targetVelocity *= DECAY;
+          }
 
-        function animateContentScroll(now: number) {
-          const elapsed = now - startTime;
-          const t = Math.min(elapsed / SCROLL_DURATION, 1);
-          const eased = 1 - Math.pow(1 - t, 3);
-          element.scrollTop = start + change * eased;
+          scrollVelocity = Math.max(
+            -MAX_SCROLL_SPEED,
+            Math.min(MAX_SCROLL_SPEED, scrollVelocity),
+          );
 
-          if (t < 1) {
-            contentAnimationId = requestAnimationFrame(animateContentScroll);
+          if (Math.abs(scrollVelocity) > 0.1) {
+            const newScrollTop = Math.max(
+              0,
+              Math.min(
+                activeScrollableContent.scrollHeight -
+                  activeScrollableContent.clientHeight,
+                activeScrollableContent.scrollTop + scrollVelocity,
+              ),
+            );
+            activeScrollableContent.scrollTop = newScrollTop;
+
+            scrollAnimationId = requestAnimationFrame(smoothScrollLoop);
           } else {
-            isContentAnimating = false;
-            contentAnimationId = null;
+            scrollVelocity = 0;
+            targetVelocity = 0;
+            scrollAnimationId = null;
           }
         }
 
-        contentAnimationId = requestAnimationFrame(animateContentScroll);
+        scrollAnimationId = requestAnimationFrame(smoothScrollLoop);
+      }
+
+      function addScrollInput(delta: number) {
+        lastScrollTime = performance.now();
+        targetVelocity += delta * SCROLL_SENSITIVITY;
+
+        targetVelocity = Math.max(
+          -MAX_SCROLL_SPEED * 2,
+          Math.min(MAX_SCROLL_SPEED * 2, targetVelocity),
+        );
+
+        if (!scrollAnimationId) {
+          startSmoothScrolling();
+        }
       }
 
       function getCurrentSection() {
@@ -185,22 +204,36 @@ export default function Page() {
         const scrollableContent = currentSection.querySelector(
           ".scrollable-content",
         ) as HTMLElement;
-        const direction = e.deltaY > 0 ? "down" : "up";
 
         if (scrollableContent) {
+          activeScrollableContent = scrollableContent;
+
+          const direction = e.deltaY > 0 ? "down" : "up";
           const atEnd = isAtSectionEnd(direction);
 
           if (!atEnd) {
             e.preventDefault();
-            smoothScrollContent(scrollableContent, direction);
+
+            let scrollDelta = e.deltaY;
+
+            if (e.deltaMode === WheelEvent.DOM_DELTA_LINE) {
+              scrollDelta *= 16;
+            } else if (e.deltaMode === WheelEvent.DOM_DELTA_PAGE) {
+              scrollDelta *= scrollableContent.clientHeight * 0.8;
+            }
+
+            addScrollInput(scrollDelta);
             return;
           }
+          activeScrollableContent = null;
           const didTransition = handleSectionTransition(direction);
           if (didTransition) {
             e.preventDefault();
             return;
           }
         } else {
+          activeScrollableContent = null;
+          const direction = e.deltaY > 0 ? "down" : "up";
           const didTransition = handleSectionTransition(direction);
           if (didTransition) {
             e.preventDefault();
@@ -216,8 +249,8 @@ export default function Page() {
         if (scrollTimeout) {
           clearTimeout(scrollTimeout);
         }
-        if (contentAnimationId) {
-          cancelAnimationFrame(contentAnimationId);
+        if (scrollAnimationId) {
+          cancelAnimationFrame(scrollAnimationId);
         }
       };
     }, [containerRef, sectionClass, duration]);
