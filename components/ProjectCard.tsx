@@ -10,6 +10,9 @@ export function ProjectCard({
   imageSrc = undefined,
   githubLink = "",
   websiteLink = "",
+  currProjectIdx,
+  setCurrProjectIdx,
+  projectIdx,
 }: {
   title: string;
   description: string;
@@ -17,6 +20,9 @@ export function ProjectCard({
   imageSrc?: string | undefined;
   githubLink?: string;
   websiteLink?: string;
+  currProjectIdx?: number;
+  setCurrProjectIdx?: (idx: number) => void;
+  projectIdx?: number;
 }) {
   return (
     <div
@@ -61,7 +67,15 @@ export function ProjectCard({
                     <HiOutlineGlobeAlt />
                   </Button>
                 )}
-                <Button isIconOnly variant="ghost">
+                <Button
+                  isIconOnly
+                  variant="ghost"
+                  onPress={() => {
+                    if (currProjectIdx && projectIdx && setCurrProjectIdx) {
+                      setCurrProjectIdx?.(currProjectIdx === projectIdx ? -1 : projectIdx);
+                    }
+                  }}
+                >
                   <HiArrowsPointingOut />
                 </Button>
               </div>

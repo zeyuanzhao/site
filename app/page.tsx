@@ -3,11 +3,11 @@
 import "lenis/dist/lenis.css";
 
 import { Button } from "@heroui/react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Lenis from "lenis";
 import { Roboto_Mono } from "next/font/google"; // eslint-disable-line camelcase
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa6";
 import { HiEnvelope } from "react-icons/hi2";
 
@@ -40,6 +40,8 @@ export default function Page() {
   const projectsRef = useRef<HTMLDivElement>(null);
   const violinRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+
+  const [currProjectIdx, setCurrProjectIdx] = useState<number>(-1);
 
   const handleScrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
     if (ref.current) {
@@ -189,7 +191,29 @@ export default function Page() {
         <div
           className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0 h-screen`}
         >
-          projects
+          <AnimatePresence mode="wait">
+            {currProjectIdx === -1 ? (
+              <motion.div
+                key="header"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.4 }}
+                className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className}`}
+              >
+                projects
+              </motion.div>
+            ) : (
+              <motion.div
+                key="details"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col items-center"
+              ></motion.div>
+            )}
+          </AnimatePresence>
         </div>
         <div className="flex flex-1 flex-col items-start justify-start py-24">
           <div className="grid w-full grid-cols-12 gap-16">
@@ -202,6 +226,9 @@ export default function Page() {
                 githubLink={project.githubLink}
                 websiteLink={project.websiteLink}
                 className="col-span-6 min-h-80"
+                projectIdx={index}
+                currProjectIdx={currProjectIdx}
+                setCurrProjectIdx={setCurrProjectIdx}
               />
             ))}
           </div>
