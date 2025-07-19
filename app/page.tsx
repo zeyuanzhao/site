@@ -13,6 +13,24 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { HiEnvelope } from "react-icons/hi2";
 import { Button } from "@heroui/react";
 
+const socialsVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4 },
+  },
+};
+
+const jumpToSectionVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4 },
+  },
+};
+
 const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
 export default function Page() {
@@ -57,7 +75,7 @@ export default function Page() {
               visible: {
                 transition: {
                   delayChildren: 3,
-                  staggerChildren: 0.15,
+                  staggerChildren: 0.1,
                 },
               },
               hidden: {},
@@ -67,14 +85,7 @@ export default function Page() {
               type="button"
               onClick={() => handleScrollTo(aboutRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
-              variants={{
-                hidden: { opacity: 0, y: -20 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.4 },
-                },
-              }}
+              variants={jumpToSectionVariants}
             >
               about
             </motion.button>
@@ -82,14 +93,7 @@ export default function Page() {
               type="button"
               onClick={() => handleScrollTo(projectsRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
-              variants={{
-                hidden: { opacity: 0, y: -20 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.4 },
-                },
-              }}
+              variants={jumpToSectionVariants}
             >
               projects
             </motion.button>
@@ -97,14 +101,7 @@ export default function Page() {
               type="button"
               onClick={() => handleScrollTo(violinRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
-              variants={{
-                hidden: { opacity: 0, y: -20 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.4 },
-                },
-              }}
+              variants={jumpToSectionVariants}
             >
               violin
             </motion.button>
@@ -112,14 +109,7 @@ export default function Page() {
               type="button"
               onClick={() => handleScrollTo(contactRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
-              variants={{
-                hidden: { opacity: 0, y: -20 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.4 },
-                },
-              }}
+              variants={jumpToSectionVariants}
             >
               contact
             </motion.button>
@@ -129,18 +119,35 @@ export default function Page() {
           >
             alex zhao
           </h1>
-          <div className="mt-8 flex flex-row items-center justify-center gap-x-4">
-            <Button isIconOnly variant="ghost">
-              <Link href="https://github.com/zeyuanzhao" target="_blank">
-                <FaGithub />
-              </Link>
-            </Button>
-            <Button isIconOnly variant="ghost">
-              <Link href="mailto:contact@azhao.dev" target="_blank">
-                <HiEnvelope />
-              </Link>
-            </Button>
-          </div>
+          <motion.div
+            className="mt-8 flex flex-row items-center justify-center gap-x-4"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: {
+                transition: {
+                  delayChildren: 4,
+                  staggerChildren: 0.15,
+                },
+              },
+              hidden: {},
+            }}
+          >
+            <motion.div variants={socialsVariants}>
+              <Button isIconOnly variant="ghost">
+                <Link href="https://github.com/zeyuanzhao" target="_blank">
+                  <FaGithub />
+                </Link>
+              </Button>
+            </motion.div>
+            <motion.div variants={socialsVariants}>
+              <Button isIconOnly variant="ghost">
+                <Link href="mailto:contact@azhao.dev" target="_blank">
+                  <HiEnvelope />
+                </Link>
+              </Button>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
       <div
