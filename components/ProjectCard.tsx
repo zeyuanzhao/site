@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, Image } from "@heroui/react";
+import { Card, CardBody, Image } from "@heroui/react";
 
 export function ProjectCard({
   title = "Project Title",
@@ -21,13 +21,12 @@ export function ProjectCard({
         />
       </div>
       <Card className="relative border border-white/10 shadow-2xl shadow-white/10">
-        <CardBody className="h-1/3" />
-        <CardFooter className="p-4">
+        <CardBody className="flex items-end justify-center pt-[calc(110%*0.9-11rem)] pb-4">
           <div className="">
             <p className="mb-2 text-2xl font-bold">{title}</p>
             <p>{description}</p>
           </div>
-        </CardFooter>
+        </CardBody>
       </Card>
     </div>
   );
