@@ -146,20 +146,20 @@ export default function Page() {
               title="Project 1"
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua."
-              className="col-span-6 h-80"
+              className="col-span-6 min-h-80"
               imageSrc={"/assets/summit.png"}
             />
             <ProjectCard
               title="Project 2"
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua."
-              className="col-span-6 h-80"
+              className="col-span-6 min-h-80"
             />
             <ProjectCard
               title="Project 3"
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua."
-              className="col-span-6 h-80"
+              className="col-span-6 min-h-80"
             />
           </div>
         </div>

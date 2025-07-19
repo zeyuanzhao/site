@@ -21,10 +21,10 @@ export function ProjectCard({
         />
       </div>
       <Card className="relative border border-white/10 shadow-2xl shadow-white/10">
-        <CardBody className="flex items-end justify-center pt-[calc(110%*0.9-11rem)] pb-4">
+        <CardBody className="flex items-end justify-center px-4 pt-[calc(110%*0.65-5.5rem)] pb-4">
           <div className="">
             <p className="mb-2 text-2xl font-bold">{title}</p>
-            <p>{description}</p>
+            <p className="">{description}</p>
           </div>
         </CardBody>
       </Card>
