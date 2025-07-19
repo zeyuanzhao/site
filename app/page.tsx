@@ -2,16 +2,16 @@
 
 import "lenis/dist/lenis.css";
 
+import { Button } from "@heroui/react";
+import { motion } from "framer-motion";
 import Lenis from "lenis";
 import { Roboto_Mono } from "next/font/google"; // eslint-disable-line camelcase
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub } from "react-icons/fa6";
+import { HiEnvelope } from "react-icons/hi2";
 
 import { ProjectCard } from "@/components/ProjectCard";
-import { HiEnvelope } from "react-icons/hi2";
-import { Button } from "@heroui/react";
 
 const socialsVariants = {
   hidden: { opacity: 0, y: -20 },
@@ -200,7 +200,7 @@ export default function Page() {
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua."
               className="col-span-6 min-h-80"
-              imageSrc={"/assets/summit.png"}
+              imageSrc="/assets/summit.png"
               githubLink="https://github.com/zeyuanzhao/summit"
               websiteLink="https://summitapp.azhao.dev"
             />
@@ -209,14 +209,14 @@ export default function Page() {
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua."
               className="col-span-6 min-h-80"
-              imageSrc={"/assets/summit.png"}
+              imageSrc="/assets/summit.png"
             />
             <ProjectCard
               title="Project 2"
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua."
               className="col-span-6 min-h-80"
-              imageSrc={"/assets/summit.png"}
+              imageSrc="/assets/summit.png"
             />
           </div>
         </div>

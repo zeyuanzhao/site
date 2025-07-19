@@ -20,10 +20,9 @@ export function ProjectCard({
 }) {
   return (
     <div
-      className={
-        "relative flex justify-center transition-transform duration-500 hover:scale-102 " +
+      className={`relative flex justify-center transition-transform duration-500 hover:scale-102 ${
         className
-      }
+      }`}
     >
       <div className="pointer-events-none absolute -top-5 left-1/2 z-10 w-[110%] -translate-x-1/2">
         <Image
