@@ -71,7 +71,7 @@ export function ProjectCard({
                   isIconOnly
                   variant="ghost"
                   onPress={() => {
-                    if (currProjectIdx && projectIdx && setCurrProjectIdx) {
+                    if (currProjectIdx !== undefined && projectIdx !== undefined && setCurrProjectIdx) {
                       setCurrProjectIdx?.(currProjectIdx === projectIdx ? -1 : projectIdx);
                     }
                   }}

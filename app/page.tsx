@@ -2,6 +2,8 @@
 
 import "lenis/dist/lenis.css";
 
+import { MDXRemote } from "next-mdx-remote-client/rsc";
+
 import { Button } from "@heroui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import Lenis from "lenis";
@@ -12,8 +14,7 @@ import { FaGithub } from "react-icons/fa6";
 import { HiEnvelope } from "react-icons/hi2";
 
 import { ProjectCard } from "@/components/ProjectCard";
-import { projects } from "@/data/projects";
-import { ProjectCardInfo } from "@/data/projects";
+import { ProjectCardInfo, projects } from "@/data/projects";
 
 const socialsVariants = {
   hidden: { opacity: 0, y: -20 },
@@ -189,7 +190,7 @@ export default function Page() {
         className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
       >
         <div
-          className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0 h-screen`}
+          className={`flex flex-1 flex-col items-center justify-center g-background sticky top-0 h-screen`}
         >
           <AnimatePresence mode="wait">
             {currProjectIdx === -1 ? (
@@ -210,12 +211,17 @@ export default function Page() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
-                className="flex flex-col items-center"
-              ></motion.div>
+                className="flex flex-1 flex-col items-center justify-center border w-full"
+              >
+                {(() => {
+                  const ProjectDetails = projects[currProjectIdx].body;
+                  return <ProjectDetails />;
+                })()}
+              </motion.div>
             )}
           </AnimatePresence>
         </div>
-        <div className="flex flex-1 flex-col items-start justify-start py-24">
+        <div className="flex flex-1 flex-col items-start justify-start py-24 border">
           <div className="grid w-full grid-cols-12 gap-16">
             {projects.map((project: ProjectCardInfo, index: number) => (
               <ProjectCard
