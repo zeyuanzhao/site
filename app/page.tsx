@@ -84,12 +84,12 @@ export default function Page() {
             alex zhao
           </h1>
           <div className="mt-8 flex flex-row items-center justify-center gap-x-4">
-            <Button isIconOnly>
+            <Button isIconOnly variant="ghost">
               <Link href="https://github.com/zeyuanzhao" target="_blank">
                 <FaGithub />
               </Link>
             </Button>
-            <Button isIconOnly>
+            <Button isIconOnly variant="ghost">
               <Link href="mailto:contact@azhao.dev" target="_blank">
                 <HiEnvelope />
               </Link>
@@ -148,18 +148,22 @@ export default function Page() {
             eiusmod tempor incididunt ut labore et dolore magna aliqua."
               className="col-span-6 min-h-80"
               imageSrc={"/assets/summit.png"}
+              githubLink="https://github.com/zeyuanzhao/summit"
+              websiteLink="https://summitapp.azhao.dev"
             />
             <ProjectCard
               title="Project 2"
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua."
               className="col-span-6 min-h-80"
+              imageSrc={"/assets/summit.png"}
             />
             <ProjectCard
-              title="Project 3"
+              title="Project 2"
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua."
               className="col-span-6 min-h-80"
+              imageSrc={"/assets/summit.png"}
             />
           </div>
         </div>

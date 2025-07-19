@@ -1,18 +1,30 @@
-import { Card, CardBody, Image } from "@heroui/react";
+import { Button, Card, CardBody, Image } from "@heroui/react";
+import Link from "next/link";
+import { FaGithub } from "react-icons/fa6";
+import { HiArrowsPointingOut, HiOutlineGlobeAlt } from "react-icons/hi2";
 
 export function ProjectCard({
   title = "Project Title",
   description = "Project Description",
   className = "",
   imageSrc = undefined,
+  githubLink = "",
+  websiteLink = "",
 }: {
   title: string;
   description: string;
   className?: string;
   imageSrc?: string | undefined;
+  githubLink?: string;
+  websiteLink?: string;
 }) {
   return (
-    <div className={"relative flex justify-center " + className}>
+    <div
+      className={
+        "relative flex justify-center transition-transform duration-500 hover:scale-102 " +
+        className
+      }
+    >
       <div className="pointer-events-none absolute -top-5 left-1/2 z-10 w-[110%] -translate-x-1/2">
         <Image
           src={imageSrc}
@@ -23,7 +35,30 @@ export function ProjectCard({
       <Card className="relative border border-white/10 shadow-2xl shadow-white/10">
         <CardBody className="flex items-end justify-center px-4 pt-[calc(110%*0.65-5.5rem)] pb-4">
           <div className="">
-            <p className="mb-2 text-2xl font-bold">{title}</p>
+            <div className="mb-3 flex flex-row items-center justify-between">
+              <p className="text-2xl font-bold hover:cursor-pointer hover:underline">
+                {title}
+              </p>
+              <div className="flex items-center gap-2">
+                {githubLink && (
+                  <Button isIconOnly variant="ghost">
+                    <Link href={githubLink} target="_blank">
+                      <FaGithub />
+                    </Link>
+                  </Button>
+                )}
+                {websiteLink && (
+                  <Button isIconOnly variant="ghost">
+                    <Link href={websiteLink} target="_blank">
+                      <HiOutlineGlobeAlt />
+                    </Link>
+                  </Button>
+                )}
+                <Button isIconOnly variant="ghost">
+                  <HiArrowsPointingOut />
+                </Button>
+              </div>
+            </div>
             <p className="">{description}</p>
           </div>
         </CardBody>
