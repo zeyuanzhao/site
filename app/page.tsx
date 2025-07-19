@@ -6,6 +6,7 @@ import Lenis from "lenis";
 import { Roboto_Mono } from "next/font/google"; // eslint-disable-line camelcase
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub } from "react-icons/fa6";
 
 import { ProjectCard } from "@/components/ProjectCard";
@@ -48,36 +49,81 @@ export default function Page() {
     <div className="dark dark:bg-background dark:text-foreground flex min-h-screen flex-col items-center">
       <div className="flex min-h-screen w-full max-w-[2000px] flex-col items-center justify-center px-20">
         <div className="flex flex-col items-center justify-center">
-          <div className="mb-6 flex flex-row items-center justify-center gap-6">
-            <button
+          <motion.div
+            className="mb-6 flex flex-row items-center justify-center gap-6"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: {
+                transition: {
+                  delayChildren: 3,
+                  staggerChildren: 0.15,
+                },
+              },
+              hidden: {},
+            }}
+          >
+            <motion.button
               type="button"
               onClick={() => handleScrollTo(aboutRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
+              variants={{
+                hidden: { opacity: 0, y: -20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.4 },
+                },
+              }}
             >
               about
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               type="button"
               onClick={() => handleScrollTo(projectsRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
+              variants={{
+                hidden: { opacity: 0, y: -20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.4 },
+                },
+              }}
             >
               projects
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               type="button"
               onClick={() => handleScrollTo(violinRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
+              variants={{
+                hidden: { opacity: 0, y: -20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.4 },
+                },
+              }}
             >
               violin
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               type="button"
               onClick={() => handleScrollTo(contactRef)}
               className="hover:cursor-pointer hover:underline focus:outline-none"
+              variants={{
+                hidden: { opacity: 0, y: -20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.4 },
+                },
+              }}
             >
               contact
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
           <h1
             className={`before:animate-typewriter after:animate-caret relative w-[max-content] ${robotoMono.className} before:bg-background after:bg-foreground text-9xl before:absolute before:inset-0 after:absolute after:inset-0 after:w-[0.075em]`}
           >
