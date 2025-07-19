@@ -32,7 +32,7 @@ export function ProjectCard({
         />
       </div>
       <Card className="relative border border-white/10 shadow-2xl shadow-white/10">
-        <CardBody className="flex items-end justify-center px-4 pt-[calc(110%*0.65-5.5rem)] pb-4">
+        <CardBody className="flex items-end justify-center px-4 pt-[calc(110%*0.53-32px)] pb-4">
           <div className="">
             <div className="mb-3 flex flex-row items-center justify-between">
               <p className="text-2xl font-bold hover:cursor-pointer hover:underline">
@@ -40,17 +40,25 @@ export function ProjectCard({
               </p>
               <div className="flex items-center gap-2">
                 {githubLink && (
-                  <Button isIconOnly variant="ghost">
-                    <Link href={githubLink} target="_blank">
-                      <FaGithub />
-                    </Link>
+                  <Button
+                    isIconOnly
+                    variant="ghost"
+                    as={Link}
+                    href={githubLink}
+                    target="_blank"
+                  >
+                    <FaGithub />
                   </Button>
                 )}
                 {websiteLink && (
-                  <Button isIconOnly variant="ghost">
-                    <Link href={websiteLink} target="_blank">
-                      <HiOutlineGlobeAlt />
-                    </Link>
+                  <Button
+                    isIconOnly
+                    variant="ghost"
+                    as={Link}
+                    href={websiteLink}
+                    target="_blank"
+                  >
+                    <HiOutlineGlobeAlt />
                   </Button>
                 )}
                 <Button isIconOnly variant="ghost">

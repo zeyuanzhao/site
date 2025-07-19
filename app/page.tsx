@@ -12,6 +12,8 @@ import { FaGithub } from "react-icons/fa6";
 import { HiEnvelope } from "react-icons/hi2";
 
 import { ProjectCard } from "@/components/ProjectCard";
+import { projects } from "@/data/projects";
+import { ProjectCardInfo } from "@/data/projects";
 
 const socialsVariants = {
   hidden: { opacity: 0, y: -20 },
@@ -63,6 +65,13 @@ export default function Page() {
     return () => lenis.destroy();
   }, []);
 
+  const jumpToButtons = [
+    { label: "about", ref: aboutRef },
+    { label: "projects", ref: projectsRef },
+    { label: "violin", ref: violinRef },
+    { label: "contact", ref: contactRef },
+  ];
+
   return (
     <div className="dark dark:bg-background dark:text-foreground flex min-h-screen flex-col items-center">
       <div className="flex min-h-screen w-full max-w-[2000px] flex-col items-center justify-center px-20">
@@ -74,45 +83,24 @@ export default function Page() {
             variants={{
               visible: {
                 transition: {
-                  delayChildren: 3,
+                  delayChildren: 2.5,
                   staggerChildren: 0.1,
                 },
               },
               hidden: {},
             }}
           >
-            <motion.button
-              type="button"
-              onClick={() => handleScrollTo(aboutRef)}
-              className="hover:cursor-pointer hover:underline focus:outline-none"
-              variants={jumpToSectionVariants}
-            >
-              about
-            </motion.button>
-            <motion.button
-              type="button"
-              onClick={() => handleScrollTo(projectsRef)}
-              className="hover:cursor-pointer hover:underline focus:outline-none"
-              variants={jumpToSectionVariants}
-            >
-              projects
-            </motion.button>
-            <motion.button
-              type="button"
-              onClick={() => handleScrollTo(violinRef)}
-              className="hover:cursor-pointer hover:underline focus:outline-none"
-              variants={jumpToSectionVariants}
-            >
-              violin
-            </motion.button>
-            <motion.button
-              type="button"
-              onClick={() => handleScrollTo(contactRef)}
-              className="hover:cursor-pointer hover:underline focus:outline-none"
-              variants={jumpToSectionVariants}
-            >
-              contact
-            </motion.button>
+            {jumpToButtons.map((button) => (
+              <motion.button
+                key={button.label}
+                type="button"
+                onClick={() => handleScrollTo(button.ref)}
+                className="hover:cursor-pointer hover:underline focus:outline-none"
+                variants={jumpToSectionVariants}
+              >
+                {button.label}
+              </motion.button>
+            ))}
           </motion.div>
           <h1
             className={`before:animate-typewriter after:animate-caret relative w-[max-content] ${robotoMono.className} before:bg-background after:bg-foreground text-9xl before:absolute before:inset-0 after:absolute after:inset-0 after:w-[0.075em]`}
@@ -126,7 +114,7 @@ export default function Page() {
             variants={{
               visible: {
                 transition: {
-                  delayChildren: 4,
+                  delayChildren: 3,
                   staggerChildren: 0.15,
                 },
               },
@@ -134,17 +122,27 @@ export default function Page() {
             }}
           >
             <motion.div variants={socialsVariants}>
-              <Button isIconOnly variant="ghost">
-                <Link href="https://github.com/zeyuanzhao" target="_blank">
-                  <FaGithub />
-                </Link>
+              <Button
+                isIconOnly
+                variant="ghost"
+                className="shadow-xl shadow-white/10"
+                href="https://github.com/zeyuanzhao"
+                target="_blank"
+                as={Link}
+              >
+                <FaGithub />
               </Button>
             </motion.div>
             <motion.div variants={socialsVariants}>
-              <Button isIconOnly variant="ghost">
-                <Link href="mailto:contact@azhao.dev" target="_blank">
-                  <HiEnvelope />
-                </Link>
+              <Button
+                isIconOnly
+                variant="ghost"
+                className="shadow-xl shadow-white/10"
+                href="mailto:contact@azhao.dev"
+                target="_blank"
+                as={Link}
+              >
+                <HiEnvelope />
               </Button>
             </motion.div>
           </motion.div>
@@ -195,29 +193,17 @@ export default function Page() {
         </div>
         <div className="flex flex-1 flex-col items-start justify-start py-24">
           <div className="grid w-full grid-cols-12 gap-16">
-            <ProjectCard
-              title="Project 1"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua."
-              className="col-span-6 min-h-80"
-              imageSrc="/assets/summit.png"
-              githubLink="https://github.com/zeyuanzhao/summit"
-              websiteLink="https://summitapp.azhao.dev"
-            />
-            <ProjectCard
-              title="Project 2"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua."
-              className="col-span-6 min-h-80"
-              imageSrc="/assets/summit.png"
-            />
-            <ProjectCard
-              title="Project 2"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua."
-              className="col-span-6 min-h-80"
-              imageSrc="/assets/summit.png"
-            />
+            {projects.map((project: ProjectCardInfo, index: number) => (
+              <ProjectCard
+                key={index}
+                title={project.title}
+                description={project.description}
+                imageSrc={project.imageSrc}
+                githubLink={project.githubLink}
+                websiteLink={project.websiteLink}
+                className="col-span-6 min-h-80"
+              />
+            ))}
           </div>
         </div>
       </div>
