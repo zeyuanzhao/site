@@ -214,6 +214,13 @@ export default function Page() {
               >
                 {(() => {
                   const ProjectDetails = projects[currProjectIdx].body;
+                  if (!ProjectDetails) {
+                    return (
+                      <div className="flex flex-1 items-center justify-center">
+                        Project details not available
+                      </div>
+                    );
+                  }
                   return <ProjectDetails />;
                 })()}
               </motion.div>

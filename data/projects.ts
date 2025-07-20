@@ -13,7 +13,7 @@ export interface ProjectCardInfo {
 }
 
 export interface ProjectDetailedInfo extends ProjectCardInfo {
-  body: ComponentType;
+  body?: ComponentType;
 }
 
 export const projects: ProjectDetailedInfo[] = [
@@ -24,7 +24,6 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/summit.png",
     githubLink: "https://github.com/zeyuanzhao/summit",
     websiteLink: "https://summitapp.vercel.app",
-    body: SummitDetails,
     className: "col-span-7",
   },
   {
