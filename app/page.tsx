@@ -54,6 +54,7 @@ export default function Page() {
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,
+      allowNestedScroll: true,
     });
 
     function raf(time: number) {
@@ -197,17 +198,19 @@ export default function Page() {
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.4 }}
                 className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className}`}
+                layoutId="project-header"
               >
                 projects
               </motion.div>
             ) : (
               <motion.div
-                key="details"
+                key={currProjectIdx}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
                 className="flex flex-1"
+                layoutId={`project-details-${currProjectIdx}`}
               >
                 {(() => {
                   const ProjectDetails = projects[currProjectIdx].body;

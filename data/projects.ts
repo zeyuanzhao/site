@@ -45,16 +45,6 @@ export const projects: ProjectDetailedInfo[] = [
     githubLink: "https://github.com/zeyuanzhao/summit",
     websiteLink: "https://summitapp.vercel.app",
     body: EduShareDetails,
-    className: "col-span-7",
-  },
-  {
-    title: "Project 1",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    imageSrc: "/assets/summit.png",
-    githubLink: "https://github.com/zeyuanzhao/summit",
-    websiteLink: "https://summitapp.vercel.app",
-    body: SummitDetails,
     className: "col-span-5",
   },
   {
@@ -66,36 +56,6 @@ export const projects: ProjectDetailedInfo[] = [
     websiteLink: "https://summitapp.vercel.app",
     body: SummitDetails,
     className: "col-span-7",
-  },
-  {
-    title: "Project 1",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    imageSrc: "/assets/summit.png",
-    githubLink: "https://github.com/zeyuanzhao/summit",
-    websiteLink: "https://summitapp.vercel.app",
-    body: SummitDetails,
-    className: "col-span-5",
-  },
-  {
-    title: "Project 1",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    imageSrc: "/assets/summit.png",
-    githubLink: "https://github.com/zeyuanzhao/summit",
-    websiteLink: "https://summitapp.vercel.app",
-    body: SummitDetails,
-    className: "col-span-7",
-  },
-  {
-    title: "Project 1",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    imageSrc: "/assets/summit.png",
-    githubLink: "https://github.com/zeyuanzhao/summit",
-    websiteLink: "https://summitapp.vercel.app",
-    body: SummitDetails,
-    className: "col-span-5",
   },
   {
     title: "Project 1",
@@ -125,6 +85,26 @@ export const projects: ProjectDetailedInfo[] = [
     githubLink: "https://github.com/zeyuanzhao/summit",
     websiteLink: "https://summitapp.vercel.app",
     body: SummitDetails,
+    className: "col-span-5",
+  },
+  {
+    title: "Project 1",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    imageSrc: "/assets/summit.png",
+    githubLink: "https://github.com/zeyuanzhao/summit",
+    websiteLink: "https://summitapp.vercel.app",
+    body: SummitDetails,
+    className: "col-span-7",
+  },
+  {
+    title: "Project 1",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    imageSrc: "/assets/summit.png",
+    githubLink: "https://github.com/zeyuanzhao/summit",
+    websiteLink: "https://summitapp.vercel.app",
+    body: SummitDetails,
     className: "col-span-7",
   },
   {
@@ -136,6 +116,26 @@ export const projects: ProjectDetailedInfo[] = [
     websiteLink: "https://summitapp.vercel.app",
     body: SummitDetails,
     className: "col-span-5",
+  },
+  {
+    title: "Project 1",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    imageSrc: "/assets/summit.png",
+    githubLink: "https://github.com/zeyuanzhao/summit",
+    websiteLink: "https://summitapp.vercel.app",
+    body: SummitDetails,
+    className: "col-span-5",
+  },
+  {
+    title: "Project 1",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    imageSrc: "/assets/summit.png",
+    githubLink: "https://github.com/zeyuanzhao/summit",
+    websiteLink: "https://summitapp.vercel.app",
+    body: SummitDetails,
+    className: "col-span-7",
   },
   {
     title: "Project 1",
