@@ -187,7 +187,7 @@ export default function Page() {
         ref={projectsRef}
         className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
       >
-        <div className="g-background sticky top-0 flex h-screen flex-1 flex-col items-center justify-center">
+        <div className="sticky top-0 flex h-screen">
           <AnimatePresence mode="wait">
             {currProjectIdx === -1 ? (
               <motion.div
@@ -207,7 +207,7 @@ export default function Page() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
-                className="flex w-full flex-1 flex-col items-center justify-center border"
+                className="flex flex-1"
               >
                 {(() => {
                   const ProjectDetails = projects[currProjectIdx].body;
