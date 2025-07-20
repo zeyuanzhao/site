@@ -2,8 +2,6 @@
 
 import "lenis/dist/lenis.css";
 
-import { MDXRemote } from "next-mdx-remote-client/rsc";
-
 import { Button } from "@heroui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import Lenis from "lenis";
@@ -189,9 +187,7 @@ export default function Page() {
         ref={projectsRef}
         className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
       >
-        <div
-          className={`flex flex-1 flex-col items-center justify-center g-background sticky top-0 h-screen`}
-        >
+        <div className="g-background sticky top-0 flex h-screen flex-1 flex-col items-center justify-center">
           <AnimatePresence mode="wait">
             {currProjectIdx === -1 ? (
               <motion.div
@@ -211,7 +207,7 @@ export default function Page() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
-                className="flex flex-1 flex-col items-center justify-center border w-full"
+                className="flex w-full flex-1 flex-col items-center justify-center border"
               >
                 {(() => {
                   const ProjectDetails = projects[currProjectIdx].body;
@@ -221,11 +217,11 @@ export default function Page() {
             )}
           </AnimatePresence>
         </div>
-        <div className="flex flex-1 flex-col items-start justify-start py-24 border">
+        <div className="flex flex-1 flex-col items-start justify-start py-24">
           <div className="grid w-full grid-cols-12 gap-4">
             {projects.map((project: ProjectCardInfo, index: number) => (
               <ProjectCard
-                key={index}
+                key={project.title + String(index)}
                 title={project.title}
                 description={project.description}
                 imageSrc={project.imageSrc}

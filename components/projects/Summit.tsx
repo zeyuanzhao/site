@@ -3,5 +3,5 @@ export function SummitDetails() {
     <div>
       <h1 className="text-4xl font-bold">Summit</h1>
     </div>
-  )
+  );
 }

@@ -1,5 +1,6 @@
-import { SummitDetails } from "@/components/projects/Summit";
 import { ComponentType } from "react";
+
+import { SummitDetails } from "@/components/projects/Summit";
 
 export interface ProjectCardInfo {
   title: string;
@@ -23,9 +24,9 @@ export const projects: ProjectDetailedInfo[] = [
     githubLink: "https://github.com/zeyuanzhao/summit",
     websiteLink: "https://summitapp.vercel.app",
     body: SummitDetails,
-    className: "col-span-7"
+    className: "col-span-7",
   },
-    {
+  {
     title: "Project 1",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -33,6 +34,6 @@ export const projects: ProjectDetailedInfo[] = [
     githubLink: "https://github.com/zeyuanzhao/summit",
     websiteLink: "https://summitapp.vercel.app",
     body: SummitDetails,
-    className: "col-span-5"
+    className: "col-span-5",
   },
 ];
