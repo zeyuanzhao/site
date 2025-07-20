@@ -222,7 +222,7 @@ export default function Page() {
           </AnimatePresence>
         </div>
         <div className="flex flex-1 flex-col items-start justify-start py-24 border">
-          <div className="grid w-full grid-cols-12 gap-16">
+          <div className="grid w-full grid-cols-12 gap-4">
             {projects.map((project: ProjectCardInfo, index: number) => (
               <ProjectCard
                 key={index}
@@ -231,7 +231,7 @@ export default function Page() {
                 imageSrc={project.imageSrc}
                 githubLink={project.githubLink}
                 websiteLink={project.websiteLink}
-                className="col-span-6 min-h-80"
+                className={project.className}
                 projectIdx={index}
                 currProjectIdx={currProjectIdx}
                 setCurrProjectIdx={setCurrProjectIdx}

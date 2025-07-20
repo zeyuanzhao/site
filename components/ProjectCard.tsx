@@ -2,6 +2,7 @@ import { Button, Card, CardBody, Image } from "@heroui/react";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa6";
 import { HiArrowsPointingOut, HiOutlineGlobeAlt } from "react-icons/hi2";
+import { CardFooter } from "./ui/card";
 
 export function ProjectCard({
   title = "Project Title",
@@ -25,6 +26,52 @@ export function ProjectCard({
   projectIdx?: number;
 }) {
   return (
+    <Card className={`${className} shadow-2xl shadow-white/20`} isFooterBlurred>
+      <Image
+        src={imageSrc}
+        removeWrapper
+        alt={title}
+        className="h-full w-full object-cover"
+      />
+      <CardFooter className="bg-default/50 absolute bottom-0 z-10 w-full justify-between border-t-1 border-zinc-100/50">
+        <div className="flex w-full flex-row items-center justify-between p-1">
+          <p className="text-lg font-bold">{title}</p>
+          <div className="flex items-center gap-2">
+            {githubLink && (
+              <Link href={githubLink} target="_blank">
+                <FaGithub />
+              </Link>
+            )}
+            {websiteLink && (
+              <Link href={websiteLink} target="_blank">
+                <HiOutlineGlobeAlt />
+              </Link>
+            )}
+            <button
+              className="hover:cursor-pointer"
+              onClick={() => {
+                if (
+                  currProjectIdx !== undefined &&
+                  projectIdx !== undefined &&
+                  setCurrProjectIdx
+                ) {
+                  setCurrProjectIdx?.(
+                    currProjectIdx === projectIdx ? -1 : projectIdx,
+                  );
+                }
+              }}
+            >
+              <HiArrowsPointingOut />
+            </button>
+          </div>
+        </div>
+      </CardFooter>
+    </Card>
+  );
+}
+
+/*
+return (
     <div
       className={`relative flex justify-center transition-transform duration-500 hover:scale-102 ${
         className
@@ -86,4 +133,4 @@ export function ProjectCard({
       </Card>
     </div>
   );
-}
+*/
