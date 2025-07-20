@@ -12,6 +12,7 @@ import { FaGithub } from "react-icons/fa6";
 import { HiEnvelope } from "react-icons/hi2";
 
 import { ProjectCard } from "@/components/ProjectCard";
+import { ViolinCard } from "@/components/ViolinCard";
 import { ProjectCardInfo, projects } from "@/data/projects";
 
 const socialsVariants = {
@@ -54,7 +55,7 @@ export default function Page() {
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,
-      allowNestedScroll: true,
+      // allowNestedScroll: true,
     });
 
     function raf(time: number) {
@@ -81,7 +82,8 @@ export default function Page() {
           <motion.div
             className="mb-6 flex flex-row items-center justify-center gap-6"
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
             variants={{
               visible: {
                 transition: {
@@ -154,12 +156,22 @@ export default function Page() {
         ref={aboutRef}
         className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
       >
-        <div
+        <motion.div
           className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0 h-screen`}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7 }}
         >
           about
-        </div>
-        <div className="flex flex-1 flex-col items-center justify-center py-24">
+        </motion.div>
+        <motion.div
+          className="flex flex-1 flex-col items-center justify-center py-24"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -182,13 +194,19 @@ export default function Page() {
             fugit, sed quia consequuntur magni dolores eos qui ratione
             voluptatem sequi nesciunt.
           </p>
-        </div>
+        </motion.div>
       </div>
       <div
         ref={projectsRef}
         className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
       >
-        <div className="sticky top-0 flex h-screen">
+        <motion.div
+          className="sticky top-0 flex h-screen"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7 }}
+        >
           <AnimatePresence mode="wait">
             {currProjectIdx === -1 ? (
               <motion.div
@@ -226,63 +244,114 @@ export default function Page() {
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
-        <div className="flex flex-1 flex-col items-start justify-start py-24">
+        </motion.div>
+        <motion.div
+          className="flex flex-1 flex-col items-start justify-start py-24"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
           <div className="grid w-full grid-cols-12 gap-4">
             {projects.map((project: ProjectCardInfo, index: number) => (
-              <ProjectCard
+              <motion.div
                 key={project.title + String(index)}
-                title={project.title}
-                description={project.description}
-                imageSrc={project.imageSrc}
-                githubLink={project.githubLink}
-                websiteLink={project.websiteLink}
-                className={project.className}
-                projectIdx={index}
-                currProjectIdx={currProjectIdx}
-                setCurrProjectIdx={setCurrProjectIdx}
-              />
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.08 }}
+                className={`h-52 ${project.className || ""}`}
+              >
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  imageSrc={project.imageSrc}
+                  githubLink={project.githubLink}
+                  websiteLink={project.websiteLink}
+                  projectIdx={index}
+                  currProjectIdx={currProjectIdx}
+                  setCurrProjectIdx={setCurrProjectIdx}
+                />
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
       <div
         ref={violinRef}
         className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
       >
-        <div
+        <motion.div
           className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0 h-screen`}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7 }}
         >
           violin
-        </div>
-        <div className="flex flex-1 flex-col items-center justify-center py-24">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
+        </motion.div>
+        <motion.div
+          className="flex flex-1 flex-col items-center justify-center py-24"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          <div className="flex w-full flex-col gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6 }}
+              className=""
+            >
+              <ViolinCard
+                src="https://www.youtube.com/embed/H_k0UrGZF8Y?si=HnB05VqbgiV2Y-YQ"
+                className="h-64 w-128"
+                title="National Symphony Orchestra Summer Music Institute 2023"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className=""
+            >
+              <ViolinCard
+                src="https://www.youtube.com/embed/9bvil3zuHy8?si=xZbYBQ6wZJiAUbFo"
+                className="h-64 w-128"
+                title="Maryland Classic Youth Orchestras 2023"
+              />
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
-      {/* Contact section placeholder */}
       <div
         ref={contactRef}
         className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
       >
-        <div
+        <motion.div
           className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0`}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7 }}
         >
           contact
-        </div>
-        <div className="flex flex-1 flex-col items-center justify-center py-24">
+        </motion.div>
+        <motion.div
+          className="flex flex-1 flex-col items-center justify-center py-24"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

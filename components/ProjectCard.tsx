@@ -31,7 +31,7 @@ export function ProjectCard({
   const [hovered, setHovered] = useState(false);
   return (
     <Card
-      className={`${className} group relative overflow-hidden shadow-2xl shadow-white/20`}
+      className={`${className} group relative h-full w-full overflow-hidden shadow-2xl shadow-white/20`}
       isFooterBlurred
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
