@@ -2,6 +2,7 @@ import { ComponentType } from "react";
 
 import { EduShareDetails } from "@/components/projects/EduShare";
 import { SummitDetails } from "@/components/projects/Summit";
+import { TriageDetails } from "@/components/projects/Triage";
 
 export interface ProjectCardInfo {
   title: string;
@@ -18,13 +19,22 @@ export interface ProjectDetailedInfo extends ProjectCardInfo {
 
 export const projects: ProjectDetailedInfo[] = [
   {
+    title: "Triage Predictor",
+    description:
+      "A light open-weight model for predicting triage levels and referring to medical specialties. Rising Star Award at IEEE International Conference on Data Mining 2025.",
+    imageSrc: "/assets/summit.png",
+    websiteLink: "https://azhao.dev/icdm25poster.pdf",
+    body: TriageDetails,
+    className: "col-span-7",
+  },
+  {
     title: "Summit",
     description:
       "Discover trending research papers through a personalized feed powered by AI. View short-form summaries, read abstracts, save papers for reading, and easily search for papers.",
     imageSrc: "/assets/summit.png",
     githubLink: "https://github.com/zeyuanzhao/summit",
     websiteLink: "https://summitapp.vercel.app",
-    className: "col-span-7",
+    className: "col-span-5",
   },
   {
     title: "EduShare",
@@ -43,7 +53,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/dchacks.png",
     githubLink: "https://github.com/blairhacks/dchacks",
     websiteLink: "https://www.dchacks.org",
-    className: "col-span-5",
+    className: "col-span-7",
   },
   {
     title: "MBMT",
@@ -61,7 +71,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/pomolist.png",
     githubLink: "https://github.com/zeyuanzhao/pomolist",
     websiteLink: "https://gopomolist.vercel.app/",
-    className: "col-span-7",
+    className: "col-span-5",
   },
   {
     title: "Aora",
@@ -79,7 +89,7 @@ export const projects: ProjectDetailedInfo[] = [
     githubLink: "https://github.com/zeyuanzhao/playsorter",
     websiteLink: "https://playsorter.vercel.app/auth",
     body: SummitDetails,
-    className: "col-span-5",
+    className: "col-span-7",
   },
   {
     title: "MedVB",
@@ -99,7 +109,7 @@ export const projects: ProjectDetailedInfo[] = [
     githubLink: "https://github.com/zeyuanzhao/20emojis",
     websiteLink: "https://20emojis.vercel.app/",
     body: SummitDetails,
-    className: "col-span-7",
+    className: "col-span-5",
   },
   {
     title: "Wallops",
@@ -117,7 +127,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: undefined,
     githubLink: "https://github.com/zeyuanzhao/cs50w/tree/main/project1",
     body: SummitDetails,
-    className: "col-span-5",
+    className: "col-span-7",
   },
   {
     title: "Auctions",
@@ -134,7 +144,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: undefined,
     githubLink: "https://github.com/zeyuanzhao/cs50x/tree/main/final-project",
     body: SummitDetails,
-    className: "col-span-7",
+    className: "col-span-5",
   },
   {
     title: "Quizlet Clone",
@@ -153,7 +163,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: undefined,
     githubLink: "https://github.com/zeyuanzhao/ai-visual-interpreter",
     body: SummitDetails,
-    className: "col-span-5",
+    className: "col-span-7",
   },
   {
     title: "Website",
