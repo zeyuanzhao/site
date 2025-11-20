@@ -173,26 +173,9 @@ export default function Page() {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <br />
-          <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo.
-          </p>
-          <br />
-          <p>
-            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-            fugit, sed quia consequuntur magni dolores eos qui ratione
-            voluptatem sequi nesciunt.
+            currently a student at montgomery blair high school. i like creating
+            projects and playing the violin. i enjoy teaching and playing
+            volleyball in my free time.
           </p>
         </motion.div>
       </div>
@@ -306,6 +289,19 @@ export default function Page() {
               className=""
             >
               <ViolinCard
+                src="https://www.youtube.com/embed/IUkofVqiyus?si=rDTtVrA-lLgEeB1O"
+                className="h-64 w-128"
+                title="Sibelius Violin Concerto Mvt. 3 2025"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6 }}
+              className=""
+            >
+              <ViolinCard
                 src="https://www.youtube.com/embed/H_k0UrGZF8Y?si=HnB05VqbgiV2Y-YQ"
                 className="h-64 w-128"
                 title="National Symphony Orchestra Summer Music Institute 2023"
@@ -347,9 +343,9 @@ export default function Page() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
+          <Link href="https://azhao.dev">azhao.dev</Link>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <Link href="mailto:azhaodev@gmail.com">azhaodev@gmail.com</Link>
           </p>
         </motion.div>
       </div>
