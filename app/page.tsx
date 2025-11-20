@@ -290,7 +290,7 @@ export default function Page() {
             >
               <ViolinCard
                 src="https://www.youtube.com/embed/IUkofVqiyus?si=rDTtVrA-lLgEeB1O"
-                className="h-64 w-full lg:w-128"
+                className="h-64 w-full md:w-128"
                 title="Sibelius Violin Concerto Mvt. 3 2025"
               />
             </motion.div>
@@ -303,7 +303,7 @@ export default function Page() {
             >
               <ViolinCard
                 src="https://www.youtube.com/embed/H_k0UrGZF8Y?si=HnB05VqbgiV2Y-YQ"
-                className="h-64 w-full lg:w-128"
+                className="h-64 w-full md:w-128"
                 title="National Symphony Orchestra Summer Music Institute 2023"
               />
             </motion.div>
@@ -316,7 +316,7 @@ export default function Page() {
             >
               <ViolinCard
                 src="https://www.youtube.com/embed/9bvil3zuHy8?si=xZbYBQ6wZJiAUbFo"
-                className="h-64 w-full lg:w-128"
+                className="h-64 w-full md:w-128"
                 title="Maryland Classic Youth Orchestras 2023"
               />
             </motion.div>

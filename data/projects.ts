@@ -20,7 +20,7 @@ export const projects: ProjectDetailedInfo[] = [
       "A light open-weight LLM for predicting triage levels and referring to medical specialties. Rising Star Award at IEEE International Conference on Data Mining 2025. Acknowledgements: Yexiao He and Ang Li, UMD.",
     imageSrc: "/assets/triage.png",
     websiteLink: "https://www.azhao.dev/icdm25poster.pdf",
-    className: "col-span-12 lg:col-span-7",
+    className: "col-span-12 md:col-span-7",
   },
   {
     title: "Summit",
@@ -29,7 +29,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/summit.png",
     githubLink: "https://github.com/zeyuanzhao/summit",
     websiteLink: "https://summitapp.vercel.app",
-    className: "col-span-12 lg:col-span-5",
+    className: "col-span-12 md:col-span-5",
   },
   {
     title: "EduShare",
@@ -38,7 +38,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/edushare.png",
     githubLink: "https://github.com/goedushare/edushare",
     websiteLink: "https://goedushare.vercel.app/",
-    className: "col-span-12 lg:col-span-5",
+    className: "col-span-12 md:col-span-5",
   },
   {
     title: "DCHacks",
@@ -47,7 +47,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/dchacks.png",
     githubLink: "https://github.com/blairhacks/dchacks",
     websiteLink: "https://www.dchacks.org",
-    className: "col-span-12 lg:col-span-7",
+    className: "col-span-12 md:col-span-7",
   },
   {
     title: "MBMT",
@@ -55,7 +55,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/mbmt.png",
     githubLink: "https://github.com/mbhs/mbmt",
     websiteLink: "https://mbmt.mbhs.edu/",
-    className: "col-span-12 lg:col-span-7",
+    className: "col-span-12 md:col-span-7",
   },
   {
     title: "Pomolist",
@@ -64,14 +64,14 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/pomolist.png",
     githubLink: "https://github.com/zeyuanzhao/pomolist",
     websiteLink: "https://gopomolist.vercel.app/",
-    className: "col-span-12 lg:col-span-5",
+    className: "col-span-12 md:col-span-5",
   },
   {
     title: "Aora",
     description: "Expo app tutorial. Share and browse videos.",
     imageSrc: "/assets/exp.png",
     githubLink: "https://github.com/zeyuanzhao/aora",
-    className: "col-span-12 lg:col-span-5",
+    className: "col-span-12 md:col-span-5",
   },
   {
     title: "Playsorter",
@@ -80,7 +80,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/playsorter.png",
     githubLink: "https://github.com/zeyuanzhao/playsorter",
     websiteLink: "https://playsorter.vercel.app/auth",
-    className: "col-span-12 lg:col-span-7",
+    className: "col-span-12 md:col-span-7",
   },
   {
     title: "MedVB",
@@ -89,7 +89,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/medvb.png",
     githubLink: "https://github.com/zeyuanzhao/medvb",
     websiteLink: "https://medvb.vercel.app",
-    className: "col-span-12 lg:col-span-7",
+    className: "col-span-12 md:col-span-7",
   },
   {
     title: "20Emojis",
@@ -98,7 +98,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/20emojis.png",
     githubLink: "https://github.com/zeyuanzhao/20emojis",
     websiteLink: "https://20emojis.vercel.app/",
-    className: "col-span-12 lg:col-span-5",
+    className: "col-span-12 md:col-span-5",
   },
   {
     title: "Wallops",
@@ -106,7 +106,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/wallops.png",
     githubLink: "https://github.com/zeyuanzhao/wallops",
     websiteLink: "https://wallops.azhao.dev/",
-    className: "col-span-12 lg:col-span-5",
+    className: "col-span-12 md:col-span-5",
   },
   {
     title: "Wiki",
@@ -114,7 +114,7 @@ export const projects: ProjectDetailedInfo[] = [
       "A wikipedia clone built with Django that allows users to create and edit articles.",
     imageSrc: undefined,
     githubLink: "https://github.com/zeyuanzhao/cs50w/tree/main/project1",
-    className: "col-span-12 lg:col-span-7",
+    className: "col-span-12 md:col-span-7",
   },
   {
     title: "Auctions",
@@ -122,14 +122,14 @@ export const projects: ProjectDetailedInfo[] = [
       "A Django app that allows users to create and bid on auctions.",
     imageSrc: undefined,
     githubLink: "https://github.com/zeyuanzhao/cs50w/tree/main/project2",
-    className: "col-span-12 lg:col-span-7",
+    className: "col-span-12 md:col-span-7",
   },
   {
     title: "50List",
     description: "A Flask todo list app with authentication.",
     imageSrc: undefined,
     githubLink: "https://github.com/zeyuanzhao/cs50x/tree/main/final-project",
-    className: "col-span-12 lg:col-span-5",
+    className: "col-span-12 md:col-span-5",
   },
   {
     title: "Quizlet Clone",
@@ -138,7 +138,7 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/quizlet.png",
     githubLink: "https://github.com/mbhsdev/quizlet",
     websiteLink: "https://mbhsdev.github.io/quizlet/",
-    className: "col-span-12 lg:col-span-5",
+    className: "col-span-12 md:col-span-5",
   },
   {
     title: "AI Visual Interpreter",
@@ -146,7 +146,7 @@ export const projects: ProjectDetailedInfo[] = [
       "An app that helps visually impaired people understand their surroundings using AI. Built for Hack Club.",
     imageSrc: undefined,
     githubLink: "https://github.com/zeyuanzhao/ai-visual-interpreter",
-    className: "col-span-12 lg:col-span-7",
+    className: "col-span-12 md:col-span-7",
   },
   {
     title: "Website",
@@ -154,6 +154,6 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/website.png",
     githubLink: "https://github.com/zeyuanzhao/site",
     websiteLink: "https://www.azhao.dev/",
-    className: "col-span-12 lg:col-span-7",
+    className: "col-span-12 md:col-span-7",
   },
 ];
