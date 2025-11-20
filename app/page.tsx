@@ -2,11 +2,10 @@
 
 import "lenis/dist/lenis.css";
 
-import { Button } from "@heroui/react";
+import { Button, Link } from "@heroui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import Lenis from "lenis";
 import { Roboto_Mono } from "next/font/google"; // eslint-disable-line camelcase
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa6";
 import { HiEnvelope } from "react-icons/hi2";

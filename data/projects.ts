@@ -1,5 +1,8 @@
 import { ComponentType } from "react";
 
+import { SummitDetails } from "@/components/projects/Summit";
+import { TriageDetails } from "@/components/projects/Triage";
+
 export interface ProjectCardInfo {
   title: string;
   description: string;
@@ -15,12 +18,13 @@ export interface ProjectDetailedInfo extends ProjectCardInfo {
 
 export const projects: ProjectDetailedInfo[] = [
   {
-    title: "Triage Predictor",
+    title: "Triage",
     description:
       "A light open-weight LLM for predicting triage levels and referring to medical specialties. Rising Star Award at IEEE International Conference on Data Mining 2025. Acknowledgements: Yexiao He and Ang Li, UMD.",
     imageSrc: "/assets/triage.png",
     websiteLink: "https://www.azhao.dev/icdm25poster.pdf",
     className: "col-span-12 md:col-span-7",
+    body: TriageDetails,
   },
   {
     title: "Summit",
@@ -30,6 +34,7 @@ export const projects: ProjectDetailedInfo[] = [
     githubLink: "https://github.com/zeyuanzhao/summit",
     websiteLink: "https://summitapp.vercel.app",
     className: "col-span-12 md:col-span-5",
+    body: SummitDetails,
   },
   {
     title: "EduShare",
