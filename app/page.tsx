@@ -77,7 +77,7 @@ export default function Page() {
 
   return (
     <div className="dark dark:bg-background dark:text-foreground flex min-h-screen flex-col items-center">
-      <div className="flex min-h-screen w-full max-w-[2000px] flex-col items-center justify-center px-20">
+      <div className="flex min-h-screen w-full max-w-[2000px] flex-col items-center justify-center px-6 md:px-12 lg:px-20">
         <div className="flex flex-col items-center justify-center">
           <motion.div
             className="mb-6 flex flex-row items-center justify-center gap-6"
@@ -107,7 +107,7 @@ export default function Page() {
             ))}
           </motion.div>
           <h1
-            className={`before:animate-typewriter after:animate-caret relative w-[max-content] ${robotoMono.className} before:bg-background after:bg-foreground text-9xl before:absolute before:inset-0 after:absolute after:inset-0 after:w-[0.075em]`}
+            className={`before:animate-typewriter after:animate-caret relative w-[max-content] ${robotoMono.className} before:bg-background after:bg-foreground text-6xl before:absolute before:inset-0 after:absolute after:inset-0 after:w-[0.075em] md:text-8xl lg:text-9xl`}
           >
             alex zhao
           </h1>
@@ -154,10 +154,10 @@ export default function Page() {
       </div>
       <div
         ref={aboutRef}
-        className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
+        className="grid min-h-screen w-full max-w-[2000px] grid-cols-1 px-6 md:px-12 lg:grid-cols-2 lg:px-20"
       >
         <motion.div
-          className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0 h-screen`}
+          className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background h-auto py-10 lg:sticky lg:top-0 lg:h-screen lg:py-0`}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -166,7 +166,7 @@ export default function Page() {
           about
         </motion.div>
         <motion.div
-          className="flex flex-1 flex-col items-center justify-center py-24"
+          className="flex flex-1 flex-col items-center justify-center py-12 lg:py-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -181,10 +181,10 @@ export default function Page() {
       </div>
       <div
         ref={projectsRef}
-        className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
+        className="grid min-h-screen w-full max-w-[2000px] grid-cols-1 px-6 md:px-12 lg:grid-cols-2 lg:px-20"
       >
         <motion.div
-          className="sticky top-0 flex h-screen"
+          className="flex h-auto w-full justify-center py-10 lg:sticky lg:top-0 lg:h-screen lg:py-0"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -229,7 +229,7 @@ export default function Page() {
           </AnimatePresence>
         </motion.div>
         <motion.div
-          className="flex flex-1 flex-col items-start justify-start py-24"
+          className="flex flex-1 flex-col items-start justify-start py-12 lg:py-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -262,10 +262,10 @@ export default function Page() {
       </div>
       <div
         ref={violinRef}
-        className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
+        className="grid min-h-screen w-full max-w-[2000px] grid-cols-1 px-6 md:px-12 lg:grid-cols-2 lg:px-20"
       >
         <motion.div
-          className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0 h-screen`}
+          className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background h-auto py-10 lg:sticky lg:top-0 lg:h-screen lg:py-0`}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -274,7 +274,7 @@ export default function Page() {
           violin
         </motion.div>
         <motion.div
-          className="flex flex-1 flex-col items-center justify-center py-24"
+          className="flex flex-1 flex-col items-center justify-center py-12 lg:py-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -290,7 +290,7 @@ export default function Page() {
             >
               <ViolinCard
                 src="https://www.youtube.com/embed/IUkofVqiyus?si=rDTtVrA-lLgEeB1O"
-                className="h-64 w-128"
+                className="h-64 w-full lg:w-128"
                 title="Sibelius Violin Concerto Mvt. 3 2025"
               />
             </motion.div>
@@ -303,7 +303,7 @@ export default function Page() {
             >
               <ViolinCard
                 src="https://www.youtube.com/embed/H_k0UrGZF8Y?si=HnB05VqbgiV2Y-YQ"
-                className="h-64 w-128"
+                className="h-64 w-full lg:w-128"
                 title="National Symphony Orchestra Summer Music Institute 2023"
               />
             </motion.div>
@@ -316,7 +316,7 @@ export default function Page() {
             >
               <ViolinCard
                 src="https://www.youtube.com/embed/9bvil3zuHy8?si=xZbYBQ6wZJiAUbFo"
-                className="h-64 w-128"
+                className="h-64 w-full lg:w-128"
                 title="Maryland Classic Youth Orchestras 2023"
               />
             </motion.div>
@@ -325,10 +325,10 @@ export default function Page() {
       </div>
       <div
         ref={contactRef}
-        className="grid min-h-screen w-full max-w-[2000px] grid-cols-2 px-20"
+        className="grid min-h-screen w-full max-w-[2000px] grid-cols-1 px-6 md:px-12 lg:grid-cols-2 lg:px-20"
       >
         <motion.div
-          className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background sticky top-0`}
+          className={`flex flex-1 flex-col items-center justify-center text-7xl ${robotoMono.className} bg-background h-auto py-10 lg:sticky lg:top-0 lg:py-0`}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -337,7 +337,7 @@ export default function Page() {
           contact
         </motion.div>
         <motion.div
-          className="flex flex-1 flex-col items-center justify-center py-24"
+          className="flex flex-1 flex-col items-center justify-center py-12 lg:py-24"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}

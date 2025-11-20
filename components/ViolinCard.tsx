@@ -8,7 +8,7 @@ export function ViolinCard({
   className?: string;
 }) {
   return (
-    <div className="flex w-full flex-row items-start">
+    <div className="flex w-full flex-col-reverse items-start lg:flex-row">
       <div
         className={`flex-shrink-0 ${className} overflow-hidden rounded-lg shadow-2xl shadow-white/10`}
       >
@@ -22,7 +22,7 @@ export function ViolinCard({
           loading="lazy"
         />
       </div>
-      <div className="px-4 pt-2">
+      <div className="px-0 pb-2 lg:px-4 lg:pt-2 lg:pb-0">
         <p className="text-xl font-bold">{title}</p>
       </div>
     </div>
