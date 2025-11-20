@@ -21,10 +21,9 @@ export const projects: ProjectDetailedInfo[] = [
   {
     title: "Triage Predictor",
     description:
-      "A light open-weight model for predicting triage levels and referring to medical specialties. Rising Star Award at IEEE International Conference on Data Mining 2025.",
-    imageSrc: "/assets/summit.png",
-    websiteLink: "https://azhao.dev/icdm25poster.pdf",
-    body: TriageDetails,
+      "A light open-weight LLM for predicting triage levels and referring to medical specialties. Rising Star Award at IEEE International Conference on Data Mining 2025. Acknowledgements: Yexiao He and Ang Li, UMD.",
+    imageSrc: "/assets/triage.png",
+    websiteLink: "https://link.azhao.dev/icdm25poster",
     className: "col-span-7",
   },
   {
@@ -43,7 +42,6 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/edushare.png",
     githubLink: "https://github.com/goedushare/edushare",
     websiteLink: "https://goedushare.vercel.app/",
-    body: EduShareDetails,
     className: "col-span-5",
   },
   {
@@ -61,7 +59,6 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/mbmt.png",
     githubLink: "https://github.com/mbhs/mbmt",
     websiteLink: "https://mbmt.mbhs.edu/",
-    body: SummitDetails,
     className: "col-span-7",
   },
   {
@@ -78,7 +75,6 @@ export const projects: ProjectDetailedInfo[] = [
     description: "Expo app tutorial. Share and browse videos.",
     imageSrc: "/assets/exp.png",
     githubLink: "https://github.com/zeyuanzhao/aora",
-    body: SummitDetails,
     className: "col-span-5",
   },
   {
@@ -88,7 +84,6 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/playsorter.png",
     githubLink: "https://github.com/zeyuanzhao/playsorter",
     websiteLink: "https://playsorter.vercel.app/auth",
-    body: SummitDetails,
     className: "col-span-7",
   },
   {
@@ -98,7 +93,6 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/medvb.png",
     githubLink: "https://github.com/zeyuanzhao/medvb",
     websiteLink: "https://medvb.vercel.app",
-    body: SummitDetails,
     className: "col-span-7",
   },
   {
@@ -108,7 +102,6 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/20emojis.png",
     githubLink: "https://github.com/zeyuanzhao/20emojis",
     websiteLink: "https://20emojis.vercel.app/",
-    body: SummitDetails,
     className: "col-span-5",
   },
   {
@@ -117,7 +110,6 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/wallops.png",
     githubLink: "https://github.com/zeyuanzhao/wallops",
     websiteLink: "https://wallops.azhao.dev/",
-    body: SummitDetails,
     className: "col-span-5",
   },
   {
@@ -126,7 +118,6 @@ export const projects: ProjectDetailedInfo[] = [
       "A wikipedia clone built with Django that allows users to create and edit articles.",
     imageSrc: undefined,
     githubLink: "https://github.com/zeyuanzhao/cs50w/tree/main/project1",
-    body: SummitDetails,
     className: "col-span-7",
   },
   {
@@ -135,7 +126,6 @@ export const projects: ProjectDetailedInfo[] = [
       "A Django app that allows users to create and bid on auctions.",
     imageSrc: undefined,
     githubLink: "https://github.com/zeyuanzhao/cs50w/tree/main/project2",
-    body: SummitDetails,
     className: "col-span-7",
   },
   {
@@ -143,7 +133,6 @@ export const projects: ProjectDetailedInfo[] = [
     description: "A Flask todo list app with authentication.",
     imageSrc: undefined,
     githubLink: "https://github.com/zeyuanzhao/cs50x/tree/main/final-project",
-    body: SummitDetails,
     className: "col-span-5",
   },
   {
@@ -153,7 +142,6 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/quizlet.png",
     githubLink: "https://github.com/mbhsdev/quizlet",
     websiteLink: "https://mbhsdev.github.io/quizlet/",
-    body: SummitDetails,
     className: "col-span-5",
   },
   {
@@ -162,7 +150,6 @@ export const projects: ProjectDetailedInfo[] = [
       "An app that helps visually impaired people understand their surroundings using AI. Built for Hack Club.",
     imageSrc: undefined,
     githubLink: "https://github.com/zeyuanzhao/ai-visual-interpreter",
-    body: SummitDetails,
     className: "col-span-7",
   },
   {
@@ -171,7 +158,6 @@ export const projects: ProjectDetailedInfo[] = [
     imageSrc: "/assets/website.png",
     githubLink: "https://github.com/zeyuanzhao/site",
     websiteLink: "https://www.azhao.dev/",
-    body: SummitDetails,
     className: "col-span-7",
   },
 ];

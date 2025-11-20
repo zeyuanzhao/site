@@ -218,7 +218,7 @@ export default function Page() {
                   if (!ProjectDetails) {
                     return (
                       <div className="flex flex-1 items-center justify-center">
-                        Project details not available
+                        description coming soon...
                       </div>
                     );
                   }
