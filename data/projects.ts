@@ -1,9 +1,5 @@
 import { ComponentType } from "react";
 
-import { EduShareDetails } from "@/components/projects/EduShare";
-import { SummitDetails } from "@/components/projects/Summit";
-import { TriageDetails } from "@/components/projects/Triage";
-
 export interface ProjectCardInfo {
   title: string;
   description: string;
@@ -23,7 +19,7 @@ export const projects: ProjectDetailedInfo[] = [
     description:
       "A light open-weight LLM for predicting triage levels and referring to medical specialties. Rising Star Award at IEEE International Conference on Data Mining 2025. Acknowledgements: Yexiao He and Ang Li, UMD.",
     imageSrc: "/assets/triage.png",
-    websiteLink: "https://link.azhao.dev/icdm25poster",
+    websiteLink: "https://www.azhao.dev/icdm25poster.pdf",
     className: "col-span-7",
   },
   {
