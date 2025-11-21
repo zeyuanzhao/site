@@ -1,5 +1,6 @@
 import "./globals.css";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 
 import { Providers } from "./providers";
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body className="antialiased" suppressHydrationWarning>
         <Providers>{children}</Providers>
       </body>
+      <GoogleAnalytics gaId="G-WTW0D38B14" />
     </html>
   );
 }

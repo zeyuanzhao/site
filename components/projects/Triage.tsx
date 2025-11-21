@@ -62,9 +62,6 @@ export function TriageDetails() {
           Emergency Severity Index (ESI) triage levels for patients based on key
           data points, such as vitals, chief complaint, pain level, and a brief
           history.
-          <br />
-          <br />I derived and cleaned a triage dataset using MIMIC-IV with
-          complex ReGex patterns.
         </p>
       </div>
     </div>

@@ -22,17 +22,6 @@ export function SummitDetails() {
             azhao.dev/icdm25poster.pdf
           </ULink>
           <br />
-          <b>Presentation</b>:{" "}
-          <ULink href="https://www.azhao.dev/icdm25presentation.pdf">
-            azhao.dev/icdm25presentation.pdf
-          </ULink>
-          <br />
-          <b>Paper</b>:{" "}
-          <ULink href="https://www.azhao.dev/icdm25paper.pdf">
-            azhao.dev/icdm25paper.pdf
-          </ULink>
-          <br />
-          <br />
         </p>
         <div className="flex flex-row items-center gap-2" />
       </div>
